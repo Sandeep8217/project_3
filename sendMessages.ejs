@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Message</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Send a Message</h2>
+        <form action="/user/messages" method="POST">
+            <div class="form-group">
+                <label for="recipient">Recipient:</label>
+                <select id="recipient" name="recipientId" class="form-control" required>
+                    <% recipients.forEach(recipient => { %>
+                        <option value="<%= recipient._id %>"><%= recipient.username %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="body">Message:</label>
+                <textarea id="body" name="body" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <a href="/user/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </form>
+    </div>
+</body>
+</html>

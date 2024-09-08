@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Appointments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Appointments</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% appointments.forEach(appointment => { %>
+                    <tr>
+                        <td><%= appointment.userId ? appointment.userId.username : 'N/A' %></td>
+                        <td><%= appointment.doctorId ? appointment.doctorId.name : 'N/A' %></td>
+                        <td><%= appointment.date.toDateString() %></td>
+                        <td><%= appointment.time %></td>
+                        <td><%= appointment.status %></td>
+                        <td>
+                            <form action="/admin/appointments/<%= appointment._id %>/status" method="POST">
+                                <select name="status" class="form-control">
+                                    <option value="Pending" <%= appointment.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                    <option value="Accepted" <%= appointment.status === 'Accepted' ? 'selected' : '' %>>Accepted</option>
+                                    <option value="Rejected" <%= appointment.status === 'Rejected' ? 'selected' : '' %>>Rejected</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/admin/dashboard" class="btn btn-primary mt-3">Back to Admin Dashboard</a>
+    </div>
+    </div>
+</body>
+</html>

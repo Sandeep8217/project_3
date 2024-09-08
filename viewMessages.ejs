@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Messages</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>My Messages</h2>
+
+        <% if (messages.length > 0) { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date Sent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% messages.forEach(message => { %>
+                        <tr>
+                            <td><%= message.sender.username %></td>
+                            <td><%= message.subject %></td>
+                            <td><%= message.body %></td>
+                            <td><%= new Date(message.dateSent).toLocaleString() %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>No messages to display.</p>
+        <% } %>
+
+        <a href="/user/Dashboard" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+</body>
+</html>

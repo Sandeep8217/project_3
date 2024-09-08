@@ -1,0 +1,31 @@
+<!-- views/viewAdmins.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Admins</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Admin List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% admins.forEach(admin => { %>
+                    <tr>
+                        <td><%= admin.username %></td>
+                        <td><%= admin.email %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/admin/dashboard" class="btn btn-primary mt-3">Back to Admin Dashboard</a>
+    </div>
+</body>
+</html>

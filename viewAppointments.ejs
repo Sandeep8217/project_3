@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>My Appointments</h2>
+        <form action="/appointments/new" method="POST">
+            <% if (appointments.length===0) { %>
+                <p>You have no appointments scheduled.</p>
+                <% } else { %>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Specialty</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% appointments.forEach(appointment=> { %>
+                                <tr>
+                                    <td>
+                                        <%= appointment.doctorId.name %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.doctorId.specialty %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.date.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.time %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.status %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                    <% } %>
+        </form>
+
+        <a href="/user/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</body>
+
+</html>
